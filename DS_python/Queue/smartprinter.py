@@ -5,10 +5,10 @@ class smartprinter:
         self.urgentjob = deque()
         self.normaljob = deque()
 
-    def add_ur_job(self, job):
+    def add_ujob(self, job):
         self.urgentjob.append(job)
 
-    def add_nor_job(self, job):
+    def add_njob(self, job):
         self.normaljob.append(job)
 
     def print_job(self):
@@ -25,10 +25,10 @@ a = smartprinter()
 
 n = int(input("Enter the number of urgent jobs: "))
 for i in range(n):
-    a.add_ur_job(input("Enter the urgent job: "))
+    a.add_ujob(input("Enter the urgent job: "))
 
 n = int(input("Enter the number of normal jobs: "))
 for i in range(n):
-    a.add_nor_job(input("Enter the normal job: "))
+    a.add_njob(input("Enter the normal job: "))
 
 a.print_job()
