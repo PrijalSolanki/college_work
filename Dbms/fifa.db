@@ -1,0 +1,25 @@
+  ⚽ FIFA WORLD CUP 2026 — Golden Boot Analytics   The FIFA 2026 analytics database has a table: 
+  GOALS(goal_id, player_name, country, match_id, minute_scored, goal_type ['Open Play'/'Penalty'/'Free Kick'/'Own Goal']). 
+  Tournament organizers need to find the Golden Boot winner (most goals, excluding own goals) and identify 
+  which country scores the most goals in the second half (minute > 45).
+
+Write SQL queries for: 
+(a) Find the Golden Boot winner — the player with the most goals excluding 'Own Goal' type. Handle ties by also showing the 
+player with fewer penalty goals as the tiebreaker. 
+(b) Find the country that scored the most goals in the second half (minute_scored > 45), excluding own goals. 
+(c) Using a window function, rank all players by goal count within their country — so we can see the top scorer per country.
+
+goals:-
+create table goals(g_id varchar(4) primary key,
+player_name varchar(20),
+country varchar(20),
+match_id varchar(4),
+minute_scored int,
+goal_type varchar(30)
+);
+
+Query :-
+
+(a) : 
+select player_name,count(minute_scored) from goals where goal_type="Own Goal" or g_id = (select  g_id from player where 
+goal_type="penalty" and minute_scored > 90 )
